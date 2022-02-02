@@ -5,12 +5,9 @@ import "./NavBar.css"
 export const NavBar = () => {
     const history = useHistory()
     return (
-        <ul className="navbar">
+        <ul className="navbar" style={{backgroundColor: "lightgoldenrodyellow"}}>
             <li className="navbar__item">
-                Navigation link
-            </li>
-            <li className="navbar__item">
-                Navigation link
+                <Link className="nav-link" to="/games">Games</Link>
             </li>
             <li className="navbar__item">
                 Navigation link
