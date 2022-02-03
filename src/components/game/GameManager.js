@@ -38,8 +38,8 @@ export const updateGame = (game, id) => {
     })
 }
 
-export const getGameTypes = () => {
-    return fetch("http://localhost:8000/gametypes", {
+export const getCategories = () => {
+    return fetch("http://localhost:8000/categories", {
         headers: {
             "Authorization": `Token ${localStorage.getItem("rater_token")}`
         }
