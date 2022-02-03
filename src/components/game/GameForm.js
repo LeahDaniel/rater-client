@@ -29,11 +29,14 @@ export const GameForm = () => {
                 getGame(editGameId)
                     .then((editGame) => {
                         setCurrentGame({
-                            skillLevel: editGame.skill_level,
-                            numberOfPlayers: editGame.number_of_players,
                             title: editGame.title,
-                            maker: editGame.maker,
-                            gameTypeId: editGame.game_type.id
+                            description: editGame.description,
+                            designer: editGame.designer,
+                            yearReleased: editGame.year_released,
+                            numberOfPlayers: editGame.number_of_players,
+                            hoursPlaytime: editGame.hours_playtime,
+                            minAgeRecommended: editGame.min_age_recommended,
+                            categoryId: editGame.categories[0]?.id
                         })
                     })
             }
@@ -63,7 +66,7 @@ export const GameForm = () => {
         // Send POST request to your API
         if (editGameId) {
             updateGame(game, editGameId)
-                .then(() => history.push("/games"))
+                .then(() => history.push(`/games/${editGameId}`))
         } else {
             createGame(game)
                 .then(() => history.push("/games"))

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
-import { useHistory } from "react-router-dom"
-import { useParams } from "react-router-dom/cjs/react-router-dom.min"
-import { deleteGame, getGame, getGames, getReviewsByGame } from "./GameManager.js"
+import { useHistory, useParams } from "react-router-dom"
+import { deleteGame, getGame, getReviewsByGame } from "./GameManager.js"
 
 export const GameDetails = (props) => {
     const { gameId } = useParams()
@@ -11,9 +10,11 @@ export const GameDetails = (props) => {
     const [gameReviews, setGameReviews] = useState([])
 
     useEffect(() => {
-        getGame(gameDetailId).then(setGame)
-        getReviewsByGame(gameDetailId).then(setGameReviews)
-    }, [])
+        if(gameDetailId){
+            getGame(gameDetailId).then(setGame)
+            getReviewsByGame(gameDetailId).then(setGameReviews)
+        }
+    }, [gameDetailId])
 
     return (
         <article className="games">
@@ -32,15 +33,23 @@ export const GameDetails = (props) => {
                     </div>
                 })
             }
-            <button onClick={() => {
-                history.push({ pathname: `/games/edit/${game.id}` })
-            }}>Edit</button>
-            <button onClick={() => {
-                deleteGame(game.id)
-            }}>Delete</button>
+
             <button onClick={() => {
                 history.push(`/games/${game.id}/review`)
             }}>Review</button>
+
+            {
+                game.user?.id === parseInt(localStorage.getItem("userId"))
+                ? <div>
+                        <button onClick={() => {
+                            history.push({ pathname: `/games/${game.id}/edit` })
+                        }}>Edit</button>
+                        <button onClick={() => {
+                            deleteGame(game.id)
+                        }}>Delete</button>
+                    </div>
+                    : ""
+            }
         </article>
     )
 }
