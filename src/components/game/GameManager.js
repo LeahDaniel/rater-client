@@ -6,6 +6,16 @@ export const getGames = () => {
     })
         .then(response => response.json())
 }
+
+export const getGamesByOrder = (text) => {
+    return fetch(`http://localhost:8000/games?orderby=${text}`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("rater_token")}`
+        }
+    })
+        .then(response => response.json())
+}
+
 export const getGamesBySearch = (text) => {
     return fetch(`http://localhost:8000/games?q=${text}`, {
         headers: {
@@ -14,6 +24,16 @@ export const getGamesBySearch = (text) => {
     })
         .then(response => response.json())
 }
+
+export const getGamesByBoth = (search, order) => {
+    return fetch(`http://localhost:8000/games?q=${search}&orderby=${order}`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("rater_token")}`
+        }
+    })
+        .then(response => response.json())
+}
+
 export const getReviewsByGame = (gameId) => {
     return fetch(`http://localhost:8000/reviews?game=${gameId}`, {
         headers: {
