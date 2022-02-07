@@ -6,6 +6,14 @@ export const getGames = () => {
     })
         .then(response => response.json())
 }
+export const getGamesBySearch = (text) => {
+    return fetch(`http://localhost:8000/games?q=${text}`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("rater_token")}`
+        }
+    })
+        .then(response => response.json())
+}
 export const getReviewsByGame = (gameId) => {
     return fetch(`http://localhost:8000/reviews?game=${gameId}`, {
         headers: {
