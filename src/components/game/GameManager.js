@@ -14,6 +14,14 @@ export const getReviewsByGame = (gameId) => {
     })
         .then(response => response.json())
 }
+export const getPicturesByGame = (gameId) => {
+    return fetch(`http://localhost:8000/pictures?game=${gameId}`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("rater_token")}`
+        }
+    })
+        .then(response => response.json())
+}
 export const getGame = (id) => {
     return fetch(`http://localhost:8000/games/${id}`, {
         headers: {
@@ -53,6 +61,18 @@ export const createRating = (rating) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(rating)
+    })
+        .then(response => response.json())
+}
+
+export const createPicture = (picture) => {
+    return fetch("http://localhost:8000/pictures", {
+        method: "POST",
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("rater_token")}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(picture)
     })
         .then(response => response.json())
 }

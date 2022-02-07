@@ -251,3 +251,15 @@ code {
     cursor: pointer;
     /* Cursor on hover */
 }
+
+.gamePic{
+	max-width: 200px;
+	margin-right: 2em;
+}
+
+.reviewBox{
+	background-color: lightskyblue;
+	margin: 2em 0;
+	max-width: fit-content;
+	padding: 1em
+}

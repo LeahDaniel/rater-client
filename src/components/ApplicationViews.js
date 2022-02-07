@@ -4,6 +4,7 @@ import { GameDetails } from "./game/GameDetails"
 import { GameForm } from "./game/GameForm"
 import { GameList } from "./game/GameList"
 import { GameReview } from "./game/GameReview"
+import { ImageForm } from "./game/ImageForm"
 
 export const ApplicationViews = () => {
     return <>
@@ -24,6 +25,9 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/games/:gameId(\d+)/edit">
                 <GameForm />
+            </Route>
+            <Route exact path="/games/:gameId(\d+)/image">
+                <ImageForm />
             </Route>
         </main>
     </>
